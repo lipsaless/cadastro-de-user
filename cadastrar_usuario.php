@@ -7,10 +7,23 @@ error_reporting(E_ALL);
 
 require_once 'userdao.php';
 
-$dao = new UserDAO;
-$dao->setNome($_REQUEST['nome']);
-$dao->setEmail($_REQUEST['email']);
-$dao->insert();
+try {
+    $dao = new UserDAO;
+    $dao->verificaEmail($_REQUEST['email']);
+    $dao->setNome($_REQUEST['nome']);
+    $dao->setEmail($_REQUEST['email']);
+    $dao->insert();
 
-// echo 'ok';
+    $type = 'success';
+    $msg = 'Cadastrado!';
+} catch (Exception $e) {
+    $type = 'error';
+    $msg = $e->getMessage();
+}
+
+echo json_encode([
+    'type' => $type,
+    'msg' => $msg
+]);
+
  ?>

@@ -7,6 +7,18 @@ require_once 'user.php';
 {
     protected $tabela = 'usuarios';
 
+    public function verificaEmail($email) {
+        $sql = "SELECT * FROM $this->tabela WHERE email = :email";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+        $cadastroJaExistente = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($cadastroJaExistente){
+            throw new Exception("Email já existente.");
+        }
+        //throw new Exception('E-mail já cadastrado');
+    }
+
     public function findUnit($id){
         $sql = "SELECT * FROM $this->tabela where id = :id";
         $stmt = $this->connection->prepare($sql);
