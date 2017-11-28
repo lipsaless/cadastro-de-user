@@ -24,13 +24,13 @@
 
 <form id="form-alt">
     <div class="form-group">
-        <label for="exampleInputPassword1">Nome</label>
-        <input name="nome" type="text" class="form-control" value="<?php echo $usuario['nome'] ?>">
+        <label  class="label" >Nome</label>
+        <input id="input" name="nome" type="text" class="form-control" value="<?php echo $usuario['nome'] ?>">
     </div>
     <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input name="email" type="email" class="form-control" value="<?php echo $usuario['email']; ?>">
-         <input type="hidden" name="id" value="<?php echo $usuario['id'] ?>">
+        <label  class="label" >Email </label>
+        <input id="input" name="email" type="email" class="form-control" value="<?php echo $usuario['email']; ?>">
+        <input type="hidden" name="id" value="<?php echo $usuario['id'] ?>">
     </div>
   <button type="submit" class="btn btn-primary">Salvar</button>
 </form>
@@ -45,6 +45,8 @@
                 success: function(data){
                     $("#exampleModal").modal('toggle')
                 }
+
+
             })
 
             return false

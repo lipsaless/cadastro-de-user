@@ -27,7 +27,7 @@ require_once 'user.php';
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
     public function findAll(){
-        $sql = "SELECT * FROM $this->tabela order by nome asc";
+        $sql = "SELECT * FROM $this->tabela order by id desc";
         $stm = $this->connection->prepare($sql);
         $stm->execute();
         return $stm->fetchAll(PDO::FETCH_ASSOC);

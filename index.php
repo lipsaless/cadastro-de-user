@@ -17,12 +17,14 @@ require_once 'userdao.php';
          <title></title>
 
            <!--Links CSS-->
+
         <link href="text/javascript" href="js/style.js">
         <link href="css/bootstrap.min.css" rel="stylesheet">
          <!-- <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css"> -->
         <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
          <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="css/style.css">
+
 
         <!--Links JavaScript-->
          <!-- <script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.12.4.js"></script>
@@ -41,28 +43,29 @@ require_once 'userdao.php';
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
         <script type="text/javascript" src="js/style.js"></script>
     </head>
 
 
 
-    <body>
-
+    <body class="corpo">
+    <?php require_once "topo.phtml" ?>
+                <!--Menu-->
                 <ul class="nav justify-content-center">
                       <li class="nav-item">
-                            <button class="btn btn-primary btn-nav" data-title="Cadastrar" data-toggle="modal" data-target="#exampleModal" data-view="view_cadastro.phtml" href="#">Novo</button>
+                            <button class="btn btn-nav" data-title="Cadastrar" data-toggle="modal" data-target="#exampleModal" data-view="view_cadastro.phtml" href="#">Novo Cadastro</button>
                       </li>
                       <li class="nav-item">
-                            <button class="btn btn-nav" href="#">Sobre</button>
+                            <!-- <a class="btn btn-nav" href="#">Sobre</a> -->
                       </li>
                       <li class="nav-item">
-                            <button class="btn btn-nav" href="#">Contato</button>
+                            <a class="btn btn-success btn-nav" href="contato.phtml">Contato</a>
                       </li>
                 </ul>
 
-            <!-- Modal -->
+            <!--Inicio Modal -->
             <div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-form" role="document">
                 <div class="modal-content">
@@ -78,6 +81,7 @@ require_once 'userdao.php';
                 </div>
               </div>
             </div>
+            <!--Fim Modal -->
 
 
             <!-- Inicio da Tabela -->
@@ -95,11 +99,11 @@ require_once 'userdao.php';
                     <?php foreach ($dao->findAll() as $key => $value) : ?>
                         <tr>
                             <!-- <td><?php echo $key+1 ?></td> -->
-                            <td><?php echo $value['nome'] ?></td>
-                            <td><?php echo $value['email'] ?></td>
-                            <td>
-                                <a href="form_editar_usuario.php?id=<?php echo $value['id'] ?>" data-id="<?php echo $value['id'] ?>" data-title="Editar" data-view="form_editar_usuario.php" class="btn-modal btn btn-primary" onlick="alterar(nome,email);" data-toggle="modal" data-target="#exampleModal">Editar</a>
-                                <a href="excluir_usuario.php?id=<?php echo $value['id'] ?>" class= "btn btn-danger">Excluir</button>
+                            <td class="linha-nome"><?php echo $value['nome'] ?></td>
+                            <td class="linha-email"><?php echo $value['email'] ?></td>
+                            <td class="linha-botao">
+                                <a href="form_editar_usuario.php?id=<?php echo $value['id'] ?>" data-id="<?php echo $value['id'] ?>" data-title="Editar" data-view="form_editar_usuario.php" class="editar btn-modal btn" onlick="alterar(nome,email);" data-toggle="modal" data-target="#exampleModal">Editar</a>
+                                <a href="excluir_usuario.php?id=<?php echo $value['id'] ?>" class= "excluir btn">Excluir</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>

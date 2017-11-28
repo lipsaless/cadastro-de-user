@@ -1,11 +1,11 @@
         //         //SWEET ALERT
 
-            function cadastro(){
-            swal({
-                text: "Usuario cadastrado com sucesso",
-                icon: "success",
-                });
-            }
+            // function cadastro(){
+            // swal({
+            //     text: "Usuario cadastrado com sucesso",
+            //     icon: "success",
+            //     });
+            // }
 
 
 
@@ -26,8 +26,8 @@
                     "lengthMenu": "Mostrar _MENU_ registros por página",
                     "zeroRecords": "Nenhum registro encontrado",
                     "info": "",
-                    "infoEmpty": "Nenhum registro encontrado dos",
-                    "infoFiltered": "_MAX_ inscritos ",
+                    "infoEmpty": "Nenhum registro encontrado dos _MAX_ existentes",
+                    "infoFiltered": "", //_MAX_ inscritos
                     "oPaginate": {
                             "sFirst": "Primeiro",
                             "sLast": "Ultimo",
@@ -88,8 +88,17 @@
                           modal.find('.modal-body input').val(recipient)*/
                     })
                      $('#exampleModal').on('hidden.bs.modal', function (event) {
-                            window.location.reload()
+                            window.location.reload(true)
                      })
+
+                     var Requisitar = function(){
+                      $.post('index.php', function(data) {
+                        $('.form').html(data);
+                        setTimeout(function(){ Requisitar(); },1000);//1000=a um segundo, altere conforme o necessario
+                      });
+                    };
+
+                     //$(".form-control form-control-sm").addClass("ui transparent icon input")
                 });
 
 
